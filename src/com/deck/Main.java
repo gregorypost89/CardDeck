@@ -10,8 +10,9 @@ public class Main {
         CardGames myFirstGame;
         myFirstGame = new PokerGame(7);
         myFirstGame.startGame();
-        myFirstGame.createDeck();
         myFirstGame.enterName();
+        myFirstGame.createDeck();
+
     }
 }
 

@@ -1,11 +1,12 @@
 package com.deck;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface CardGames {
     void startGame();
     void enterName();
-    List<Card> createDeck();
+    ArrayList<Card> createDeck();
+    void shuffleDeck(ArrayList<Card> x);
     void drawHand(int deckCard);
     void drawCard();
     void endTurn();

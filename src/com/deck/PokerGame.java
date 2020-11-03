@@ -1,9 +1,8 @@
 package com.deck;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
+import static com.sun.tools.javac.jvm.ByteCodes.swap;
 
 public class PokerGame implements CardGames {
 
@@ -14,7 +13,7 @@ public class PokerGame implements CardGames {
 
     @Override
     public void startGame() {
-        System.out.println("Poker started.");
+        System.out.println("Poker started. This is game number");
         // Need to store a deck here from createDeck()
         // TODO: determine best method to store deck
         List<Card> deck = null;
@@ -32,22 +31,29 @@ public class PokerGame implements CardGames {
     }
 
     @Override
-    public List<Card> createDeck() {
+    public ArrayList<Card> createDeck() {
         // TODO Revisit return statements, test functionality
-        List<Card> deck = new ArrayList<>();
-        List<String> rankList = Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
-                "Eight", "Nine", "Ten", "Jack", "Queen", "King");
-        List<String> suitList = Arrays.asList("Clubs", "Diamonds", "Hearts", "Spades");
+        ArrayList<Card> deck = new ArrayList<Card>();
+        ArrayList<String> rankList = new ArrayList<String>(Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
+                "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
+        ArrayList<String> suitList = new ArrayList<String>(Arrays.asList("Clubs", "Diamonds", "Hearts", "Spades"));
         for (String rank : rankList) {
             for (String suit : suitList) {
-                System.out.println(rank + " of " + suit);
+                //System.out.println(rank + " of " + suit);
                 deck.add(Card.createCard(rank, suit));
-                return deck;
             }
         }
+        //System.out.println(deck.toString());
+        Collections.shuffle(deck);
+        System.out.println("Deck Order:");
+        System.out.println(deck.toString());
         return deck;
     }
 
+    @Override
+    public void shuffleDeck(ArrayList<Card> x) {
+        Collections.shuffle(x);
+    }
 
     @Override
     public void drawHand(int deckCard) {
@@ -81,3 +87,4 @@ public class PokerGame implements CardGames {
         System.out.println("endGame not implemented");
     }
 }
+
