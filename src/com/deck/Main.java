@@ -6,13 +6,19 @@ import java.util.List;
 
 public class Main {
 
+    private static void printActions() {
+        System.out.println("Available Actions:\nPress: ");
+        System.out.println("1 - To start a new game\n" +
+                "2 - To terminate the program");
+    }
+
     public static void main(String[] args) {
         CardGames myFirstGame;
         myFirstGame = new PokerGame(7);
         myFirstGame.startGame();
         myFirstGame.enterName();
         myFirstGame.createDeck();
-
+        myFirstGame.deal();
     }
 }
 

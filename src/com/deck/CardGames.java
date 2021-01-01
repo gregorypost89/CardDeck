@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public interface CardGames {
     void startGame();
     void enterName();
-    ArrayList<Card> createDeck();
     void shuffleDeck(ArrayList<Card> x);
-    void drawHand(int deckCard);
+    ArrayList<Card> createDeck();
+    void deal();
     void drawCard();
     void endTurn();
     void endGame();

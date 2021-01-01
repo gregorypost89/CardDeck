@@ -6,14 +6,16 @@ import static com.sun.tools.javac.jvm.ByteCodes.swap;
 
 public class PokerGame implements CardGames {
 
-    private int myHand;
+    ArrayList<Card> deck = new ArrayList<Card>();
+    ArrayList<Card> myHand = new ArrayList<Card>();
+    ArrayList<Card> opponentHand = new ArrayList<Card>();
 
     public PokerGame(int gameNumber) {
     }
 
     @Override
     public void startGame() {
-        System.out.println("Poker started. This is game number");
+        System.out.println("Poker started.");
         // Need to store a deck here from createDeck()
         // TODO: determine best method to store deck
         List<Card> deck = null;
@@ -30,23 +32,21 @@ public class PokerGame implements CardGames {
         System.out.println("Welcome, " + playerName + "!");
     }
 
-    @Override
     public ArrayList<Card> createDeck() {
         // TODO Revisit return statements, test functionality
-        ArrayList<Card> deck = new ArrayList<Card>();
         ArrayList<String> rankList = new ArrayList<String>(Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
                 "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
         ArrayList<String> suitList = new ArrayList<String>(Arrays.asList("Clubs", "Diamonds", "Hearts", "Spades"));
         for (String rank : rankList) {
             for (String suit : suitList) {
                 //System.out.println(rank + " of " + suit);
-                deck.add(Card.createCard(rank, suit));
+                deck.add(new Card(rank, suit));
             }
         }
         //System.out.println(deck.toString());
         Collections.shuffle(deck);
-        System.out.println("Deck Order:");
-        System.out.println(deck.toString());
+        //System.out.println("Deck Order:");
+        //System.out.println(deck.toString());
         return deck;
     }
 
@@ -56,21 +56,35 @@ public class PokerGame implements CardGames {
     }
 
     @Override
-    public void drawHand(int deckCard) {
+    public void deal() {
         // Draws set number of cards
         // Unavailable after starting game (turn 0/1 action only)
         // TODO: Draw five cards for poker
         // TODO: Make unavailable after starting game
         // TODO: Automatic functionality?
-        System.out.println("Drawing " + deckCard + " cards from the deck");
-        System.out.println("I have " + deckCard + "cards in my hand");
+        Card playerCard = null;
+        Card opponentCard = null;
+        for (int i = 0; i < 5; i++) {
+            playerCard = deck.get(0);
+            opponentCard = deck.get(1);
+            myHand.add(playerCard);
+            opponentHand.add(opponentCard);
+            deck.remove(0);
+            deck.remove(0);
+        }
+        System.out.println("Player's hand: " + myHand);
+        System.out.println("Opponent's hand: " + opponentHand);
     }
 
     @Override
     public void drawCard() {
         // Draws a single card
         // TODO: Implement
-        System.out.println("drawCard not implemented");
+        Card drawnCard = deck.get(0);
+        System.out.println(drawnCard);
+        myHand.add(drawnCard);
+        deck.remove(0);
+        System.out.println(myHand);
     }
 
     @Override
