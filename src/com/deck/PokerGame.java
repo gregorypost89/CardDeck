@@ -10,15 +10,9 @@ public class PokerGame implements CardGames {
     ArrayList<Card> myHand = new ArrayList<Card>();
     ArrayList<Card> opponentHand = new ArrayList<Card>();
 
-    public PokerGame(int gameNumber) {
-    }
-
     @Override
     public void startGame() {
         System.out.println("Poker started.");
-        // Need to store a deck here from createDeck()
-        // TODO: determine best method to store deck
-        List<Card> deck = null;
     }
 
     @Override
@@ -39,14 +33,10 @@ public class PokerGame implements CardGames {
         ArrayList<String> suitList = new ArrayList<String>(Arrays.asList("Clubs", "Diamonds", "Hearts", "Spades"));
         for (String rank : rankList) {
             for (String suit : suitList) {
-                //System.out.println(rank + " of " + suit);
                 deck.add(new Card(rank, suit));
             }
         }
-        //System.out.println(deck.toString());
         Collections.shuffle(deck);
-        //System.out.println("Deck Order:");
-        //System.out.println(deck.toString());
         return deck;
     }
 
@@ -57,11 +47,6 @@ public class PokerGame implements CardGames {
 
     @Override
     public void deal() {
-        // Draws set number of cards
-        // Unavailable after starting game (turn 0/1 action only)
-        // TODO: Draw five cards for poker
-        // TODO: Make unavailable after starting game
-        // TODO: Automatic functionality?
         Card playerCard = null;
         Card opponentCard = null;
         for (int i = 0; i < 5; i++) {
@@ -78,8 +63,7 @@ public class PokerGame implements CardGames {
 
     @Override
     public void drawCard() {
-        // Draws a single card
-        // TODO: Implement
+        // For future implementation (example: Texas Hold Em)
         Card drawnCard = deck.get(0);
         System.out.println(drawnCard);
         myHand.add(drawnCard);
@@ -89,7 +73,6 @@ public class PokerGame implements CardGames {
 
     @Override
     public void endTurn() {
-        // Ends player turn
         // TODO: Implement
         System.out.println("endTurn not implemented");
     }
